@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Make new Post</title>
+        <!-- CSS only -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+            crossorigin="anonymous">
+        <!-- JavaScript Bundle with Popper -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+            crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="../static/CSS/new.css">
+    </head>
+    <body>
+        <header class="make_post_header">
+            <div class="header_body">
+                {% if is_edit_post == False : %}
+                    <h1 class="post_heading">NEW POST</h1>
+                    <h3 class="post_subheading">You are creating a new post !</h3>
+                {% else : %}
+                    <h1 class="post_heading">EDIT POST</h1>
+                    <h3 class="post_subheading">You are editing existing post !</h3>
+                {% endif %}
+            </div>
+        </header>
+        <section class="make_post_body">
+            <form
+                class="row g-3 needs-validation"
+                novalidate
+                action="{{url_for('new_post')}}"
+                method="POST"
+                name='make_post_form'>
+                <div class="form_feed">
+                    <div class="form_input_fields">
+                        <div class="col-md-4">
+                            <label for="validationCustom01" class="form-label text-warning">BLOG POST TITLE</label>
+                            <input
+                                type="text"
+                                class="form-control bg-transparent text-white"
+                                id="validationCustom01"
+                                name="make_post_title"
+                                required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationCustom01" class="form-label text-warning">BLOG POST SUBTITLE</label>
+                            <input
+                                type="text"
+                                class="form-control bg-transparent text-white"
+                                id="validationCustom01"
+                                name="make_post_subtitle"
+                                required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="validationCustom01" class="form-label text-warning">BLOG POST AUTHOR</label>
+                            <input
+                                type="text"
+                                class="form-control bg-transparent text-white"
+                                id="validationCustom01"
+                                name="make_post_author"
+                                required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="validationCustom01" class="form-label text-warning">BLOG IMAGE LINK</label>
+                            <input
+                                type="url"
+                                class="form-control bg-transparent text-white"
+                                id="validationCustom01"
+                                name="make_post_img_url"
+                                required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 form_text_area">
+                        <label for="validationCustom01" class="form-label text-warning">BLOG CONTENT</label>
+                        <div class="make_post_blog_text_area" name="make_post_content">
+                            {{ ckeditor.load() }}
+                            {{ ckeditor.create(name='make_post_body') }}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 form_action_btn">
+                    <button class="btn btn-success" type="submit">Submit form</button>
+                </div>
+            </form>
+
+        </section>
+    </body>
+</html>

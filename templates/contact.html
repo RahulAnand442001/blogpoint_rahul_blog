@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/bff4eaaad0.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="../static/CSS/contact.css">
+        <title>Contact</title>
+    </head>
+    <body>
+        <header class="header">
+            <h1 class="contact_heading">CONTACT ME</h1>
+        </header>
+        <section class="contact_body">
+            <form
+                action="{{url_for('contact_page')}}"
+                method="post"
+                class="contact_form"
+                name="messageSent">
+                <div class="user_input">
+                    <label for="" class="name">NAME</label>
+                    <input type="text" class="name_input" name="name">
+                    <label for="" class="email">EMAIL</label>
+                    <input type="text" class="email_input" name="email">
+                </div>
+                <label for="" class="message">MESSAGE</label>
+                <textarea id="" cols="50" rows="10" class="message_input" name="message"></textarea>
+                <button id="submit">SUBMIT</button>
+            </form>
+        </section>
+        <footer class="footer" id="footer">
+            <a href="index.html" class="back">BACK TO HOME</a>
+
+            <div class="footer_icons">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-whatsapp"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
+            <h6 class="copyright">&copy; COPYRIGHT 2020 by Rahul Anand Sahu. All rights reserved.
+            </h6>
+        </footer>
+    </body>
+</html>

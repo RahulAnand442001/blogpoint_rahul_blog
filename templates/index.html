@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://kit.fontawesome.com/77b01edb9a.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../static/CSS/styles.css">
+        <title>Rahul's Blog</title>
+    </head>
+    <body>
+        <header class="header">
+            <div class="header_face">
+                <h1 class="face_heading">Rahul's Blog</h1>
+                <h5 class="face_text">A collection of my blog posts</h5>
+                <i class="fas fa-cube fa-7x"></i>
+
+            </div>
+            <div class="header_body">
+                <nav class="navbar">
+                    <ul class="nav-items">
+                        <a href="#" class="nav-link">HOME</a>
+                        <a href="{{url_for('about_page')}}" class="nav-link">ABOUT</a>
+                        <a href="{{url_for('contact_page')}}" class="nav-link">CONTACT</a>
+                        {% if not logged_in : %}
+                            <a href="{{url_for('register') }}" id="signup_link" class="nav-link">
+                                REGISTER</a>
+                            <a href="{{url_for('login') }}" id="signin_link" class="nav-link">
+                                LOGIN</a>
+
+                        {% else : %}
+                            <a href="{{url_for('logout') }}" id="signout_link" class="nav-link">
+                                LOG OUT</a>
+                        {% endif %}
+
+                    </ul>
+                </nav>
+                <div class="vertical_nav">
+                    <a href="#" class="vertical-link">
+                        <i class="fas fa-circle "></i>
+                    </a>
+                    <a href="#content" class="vertical-link">
+                        <i class="fas fa-circle"></i>
+                    </a>
+                    <a href="#footer" class="vertical-link">
+                        <i class="fas fa-circle"></i>
+                    </a>
+                </div>
+                <img src="static/images/my_photo.jpg" alt="PROFILE" class="profile">
+                <div class="blog_profile">
+                    <h5 class="blog_numbers">
+                        <span class="blog_count">{{total_blogs}}</span>
+                        BLOGS
+                    </h5>
+                    <h5 class="blog_views">
+                        <span class="view">900</span>
+                        VIEWS
+                    </h5>
+                    <h5 class="blog_ratings">
+                        <span class="rate">5</span>
+                        RATINGS
+                    </h5>
+                </div>
+                {% if logged_in and current_user.id == 1 : %}
+                    <div class="header_buttons">
+                        <a href="{{url_for('new_post') }}" class="button">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            ADD POST
+                        </a>
+
+                    </div>
+                {% endif %}
+            </div>
+        </header>
+        <section class="content" id="content" style="text-align: center;">
+            {% for blog in blogs : %}
+                <div class="card">
+                    <h1 class="post_title">{{blog.title}}</h1>
+                    <h3 class="post_subtitle">{{blog.subtitle}}</h3>
+                    <h5 class="post_author">Posted by
+                        <strong>
+                            <em>
+                                {{blog.author.name}}</em>
+                        </strong>
+                        on
+                        {{blog.date}}</h5>
+                    <div class="card_options">
+                        <a href="{{url_for('show_post',index=blog.id)}}" class="post_link">Read More</a>
+                        {% if logged_in and current_user.id == 1 : %}
+                            <a href="{{url_for('delete_post',post_id=blog.id)}}">
+                                <i class="fas fa-trash-alt fa-2x"></i>
+                            </a>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        </section>
+        <footer class="footer" id="footer">
+            <div class="footer_icons">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-whatsapp"></i>
+                <i class="fab fa-youtube"></i>
+            </div>
+            <h6 class="copyright">&copy; COPYRIGHT 2020 by Rahul Anand Sahu. All rights reserved.
+            </h6>
+        </footer>
+    </body>
+</html>
